@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Ejercicio1.Models;
 
@@ -20,8 +18,17 @@ public partial class EjercicioDbContext : DbContext
     public virtual DbSet<Departamento> Departamentos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-8J7LS49;Database=EmpresaDB;Trusted_Connection=True;TrustServerCertificate=True");
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            optionsBuilder.UseSqlServer(configuration.GetConnectionString("EmpresaDBConnection"));
+        }
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -42,9 +49,13 @@ public partial class EjercicioDbContext : DbContext
         modelBuilder.Entity<Departamento>(entity =>
         {
             entity.HasKey(e => e.DepartamentoId).HasName("PK__Departam__66BB0E1E5679401C");
-
             entity.Property(e => e.DepartamentoId).HasColumnName("DepartamentoID");
             entity.Property(e => e.Nombre).HasMaxLength(100);
+
+            entity.HasMany(d => d.Asociados)
+                  .WithOne(a => a.Departamento)
+                  .HasForeignKey(a => a.DepartamentoId)
+                  .HasConstraintName("FK__Asociados__Depar__398D8EEE");
         });
 
         OnModelCreatingPartial(modelBuilder);

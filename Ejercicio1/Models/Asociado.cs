@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Text.Json.Serialization;
 
 namespace Ejercicio1.Models;
 
@@ -13,5 +12,6 @@ public partial class Asociado
 
     public int? DepartamentoId { get; set; }
 
+    [JsonIgnore]
     public virtual Departamento? Departamento { get; set; }
 }

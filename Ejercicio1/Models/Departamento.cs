@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Text.Json.Serialization;
 
 namespace Ejercicio1.Models;
 
@@ -9,5 +8,6 @@ public partial class Departamento
 
     public string Nombre { get; set; } = null!;
 
+    [JsonIgnore]
     public virtual ICollection<Asociado> Asociados { get; set; } = new List<Asociado>();
 }

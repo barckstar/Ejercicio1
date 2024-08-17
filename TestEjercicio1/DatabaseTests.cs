@@ -1,7 +1,5 @@
-using Xunit;
 using Ejercicio1.Models;  
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace TestEjercicio_1
 {

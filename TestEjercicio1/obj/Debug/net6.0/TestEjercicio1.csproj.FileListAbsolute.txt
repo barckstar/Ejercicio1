@@ -165,3 +165,4 @@ C:\Users\barck\source\repos\Ejercicio1\TestEjercicio1\obj\Debug\net6.0\refint\Te
 C:\Users\barck\source\repos\Ejercicio1\TestEjercicio1\obj\Debug\net6.0\TestEjercicio1.pdb
 C:\Users\barck\source\repos\Ejercicio1\TestEjercicio1\obj\Debug\net6.0\TestEjercicio1.genruntimeconfig.cache
 C:\Users\barck\source\repos\Ejercicio1\TestEjercicio1\obj\Debug\net6.0\ref\TestEjercicio1.dll
+C:\Users\barck\source\repos\Ejercicio1\TestEjercicio1\obj\Debug\net6.0\TestEjercicio1.sourcelink.json
