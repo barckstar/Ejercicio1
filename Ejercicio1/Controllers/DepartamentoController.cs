@@ -1,8 +1,6 @@
 ﻿using Ejercicio1.Models;
 using Ejercicio1.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Ejercicio1.Controllers
 {
