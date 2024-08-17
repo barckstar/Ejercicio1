@@ -109,6 +109,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Ejercicio1.Controllers.AuthController",
+    "Method": "GenerateToken",
+    "RelativePath": "api/Auth/token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Ejercicio1.Models.UserLogin",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Ejercicio1.Controllers.DepartamentosController",
     "Method": "GetDepartamentos",
     "RelativePath": "api/Departamentos",

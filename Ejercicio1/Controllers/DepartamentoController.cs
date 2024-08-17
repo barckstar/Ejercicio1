@@ -1,9 +1,11 @@
 ﻿using Ejercicio1.Models;
 using Ejercicio1.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ejercicio1.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DepartamentosController : ControllerBase
