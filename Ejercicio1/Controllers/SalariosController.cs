@@ -1,5 +1,5 @@
-﻿using Ejercicio1.Models;
-using Ejercicio1.Services;
+﻿using Ejercicio1.Interfaces;
+using Ejercicio1.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,9 +10,9 @@ namespace Ejercicio1.Controllers
     [ApiController]
     public class SalariosController : ControllerBase
     {
-        private readonly SalarioService _salarioService;
+        private readonly ISalarioService _salarioService;
 
-        public SalariosController(SalarioService salarioService)
+        public SalariosController(ISalarioService salarioService)
         {
             _salarioService = salarioService;
         }

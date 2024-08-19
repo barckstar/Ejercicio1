@@ -1,9 +1,10 @@
-﻿using Ejercicio1.Models;
+﻿using Ejercicio1.Interfaces;
+using Ejercicio1.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ejercicio1.Services
 {
-    public class DepartamentoService
+    public class DepartamentoService : IDepartamentoService
     {
         private readonly EjercicioDbContext _context;
 
@@ -14,11 +15,9 @@ namespace Ejercicio1.Services
 
         // Obtener todos los departamentos
         public async Task<IEnumerable<Departamento>> GetAllDepartamentosAsync() => await _context.Departamentos.ToListAsync();
-        
 
         // Obtener un departamento por ID
         public async Task<Departamento> GetDepartamentoByIdAsync(int id) => await _context.Departamentos.FirstOrDefaultAsync(d => d.DepartamentoId == id);
-
 
         // Crear un nuevo departamento
         public async Task<Departamento> CreateDepartamentoAsync(Departamento departamento)

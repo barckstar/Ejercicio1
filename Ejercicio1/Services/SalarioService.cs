@@ -1,9 +1,10 @@
-﻿using Ejercicio1.Models;
+﻿using Ejercicio1.Interfaces;
+using Ejercicio1.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ejercicio1.Services
 {
-    public class SalarioService
+    public class SalarioService : ISalarioService
     {
         private readonly EjercicioDbContext _context;
 
@@ -11,7 +12,6 @@ namespace Ejercicio1.Services
         {
             _context = context;
         }
-
         // Aumentar salario para todos los asociados
         public async Task<IEnumerable<Asociado>> AumentarSalarioTodosAsync(decimal porcentajeAumento)
         {
@@ -77,6 +77,5 @@ namespace Ejercicio1.Services
             await _context.SaveChangesAsync();
             return asociado;
         }
-
     }
 }

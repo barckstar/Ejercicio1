@@ -1,5 +1,5 @@
-﻿using Ejercicio1.Models;
-using Ejercicio1.Services;
+﻿using Ejercicio1.Interfaces;
+using Ejercicio1.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,9 +10,9 @@ namespace Ejercicio1.Controllers
     [ApiController]
     public class DepartamentosController : ControllerBase
     {
-        private readonly DepartamentoService _departamentoService;
+        private readonly IDepartamentoService _departamentoService;
 
-        public DepartamentosController(DepartamentoService departamentoService)
+        public DepartamentosController(IDepartamentoService departamentoService)
         {
             _departamentoService = departamentoService;
         }

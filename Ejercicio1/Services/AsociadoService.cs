@@ -1,9 +1,10 @@
-﻿using Ejercicio1.Models;
+﻿using Ejercicio1.Interfaces;
+using Ejercicio1.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ejercicio1.Services
 {
-    public class AsociadoService
+    public class AsociadoService : IAsociadoService
     {
         private readonly EjercicioDbContext _context;
 
@@ -12,14 +13,10 @@ namespace Ejercicio1.Services
             _context = context;
         }
 
-        // Obtener todos los asociados
         public async Task<IEnumerable<Asociado>> GetAllAsociadosAsync() => await _context.Asociados.ToListAsync();
-        
 
-        // Obtener un asociado por ID
         public async Task<Asociado> GetAsociadoByIdAsync(int id) => await _context.Asociados.FirstOrDefaultAsync(a => a.AsociadoId == id);
 
-        // Crear un nuevo asociado
         public async Task<Asociado> CreateAsociadoAsync(Asociado asociado)
         {
             _context.Asociados.Add(asociado);
@@ -27,14 +24,13 @@ namespace Ejercicio1.Services
             return asociado;
         }
 
-        // Actualizar un asociado existente
         public async Task<Asociado?> UpdateAsociadoAsync(Asociado asociado)
         {
             var existingAsociado = await _context.Asociados.FirstOrDefaultAsync(a => a.AsociadoId == asociado.AsociadoId);
 
             if (existingAsociado == null)
             {
-                return null; 
+                return null;
             }
 
             existingAsociado.Nombre = asociado.Nombre;
@@ -46,7 +42,6 @@ namespace Ejercicio1.Services
             return existingAsociado;
         }
 
-        // Eliminar un asociado
         public async Task<bool> DeleteAsociadoAsync(int id)
         {
             var asociado = await _context.Asociados.FirstOrDefaultAsync(a => a.AsociadoId == id);

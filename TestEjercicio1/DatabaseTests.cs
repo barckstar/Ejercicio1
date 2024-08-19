@@ -1,11 +1,12 @@
-using Ejercicio1.Models;  
+using Ejercicio1.Models;
 using Microsoft.EntityFrameworkCore;
+using Xunit;
 
 namespace TestEjercicio_1
 {
     public class DatabaseTests
     {
-        private DbContextOptions<EjercicioDbContext> _options;
+        private readonly DbContextOptions<EjercicioDbContext> _options;
 
         public DatabaseTests()
         {
@@ -15,25 +16,33 @@ namespace TestEjercicio_1
         }
 
         [Fact]
-        public void PuedeConectarDatabaseTablaDepartamentos()
+        public void Puede_Conectar_Database_TablaDepartamentos()
         {
-            using (var context = new EjercicioDbContext(_options))
-            {
-                var departments = context.Departamentos.ToList();
-                Assert.NotNull(departments);
-                Assert.True(departments.Count > 0, "No se encontraron departamentos en la base de datos.");
-            }
+            // Arrange
+            var context = new EjercicioDbContext(_options);
+
+            // Act
+            var departments = context.Departamentos.ToList();
+
+            // Assert
+            Assert.NotNull(departments);
+            Assert.True(departments.Count > 0, "No se encontraron departamentos en la base de datos.");
+
         }
 
         [Fact]
-        public void PuedeConectarDatabaseTablaAsociado()
+        public void Puede_Conectar_Database_TablaAsociado()
         {
-            using (var context = new EjercicioDbContext(_options))
-            {
-                var asociado = context.Asociados.ToList();
-                Assert.NotNull(asociado);
-                Assert.True(asociado.Count > 0, "No se encontraron Asociado en la base de datos.");
-            }
+            // Arrange
+            var context = new EjercicioDbContext(_options);
+
+            // Act
+            var asociado = context.Asociados.ToList();
+
+            // Assert
+            Assert.NotNull(asociado);
+            Assert.True(asociado.Count > 0, "No se encontraron asociados en la base de datos.");
+
         }
     }
 }

@@ -1,3 +1,4 @@
+using Ejercicio1.Interfaces;
 using Ejercicio1.Models;
 using Ejercicio1.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -68,6 +69,12 @@ builder.Services.AddDbContext<EjercicioDbContext>(options =>
 builder.Services.AddScoped<DepartamentoService>();
 builder.Services.AddScoped<AsociadoService>();
 builder.Services.AddScoped<SalarioService>();
+
+// Registra las interfaces
+builder.Services.AddScoped<ISalarioService, SalarioService>();
+builder.Services.AddScoped<IDepartamentoService, DepartamentoService>();
+builder.Services.AddScoped<IAsociadoService, AsociadoService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 // Configura opciones JSON
 builder.Services.AddControllers().AddJsonOptions(options =>

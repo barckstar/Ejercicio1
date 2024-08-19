@@ -1,5 +1,5 @@
-﻿using Ejercicio1.Models;
-using Ejercicio1.Services;
+﻿using Ejercicio1.Interfaces;
+using Ejercicio1.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,14 +10,13 @@ namespace Ejercicio1.Controllers
     [ApiController]
     public class AsociadosController : ControllerBase
     {
-        private readonly AsociadoService _asociadoService;
+        private readonly IAsociadoService _asociadoService;
 
-        public AsociadosController(AsociadoService asociadoService)
+        public AsociadosController(IAsociadoService asociadoService)
         {
             _asociadoService = asociadoService;
         }
 
-        // Obtener todos los asociados
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Asociado>>> GetAsociados()
         {
@@ -25,7 +24,6 @@ namespace Ejercicio1.Controllers
             return Ok(asociados);
         }
 
-        // Obtener un asociado por ID
         [HttpGet("{id}")]
         public async Task<ActionResult<Asociado>> GetAsociado(int id)
         {
@@ -39,7 +37,6 @@ namespace Ejercicio1.Controllers
             return Ok(asociado);
         }
 
-        // Crear un nuevo asociado
         [HttpPost]
         public async Task<ActionResult<Asociado>> PostAsociado(Asociado asociado)
         {
@@ -47,7 +44,6 @@ namespace Ejercicio1.Controllers
             return CreatedAtAction(nameof(GetAsociado), new { id = createdAsociado.AsociadoId }, createdAsociado);
         }
 
-        // Actualizar un asociado existente
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAsociado(int id, Asociado asociado)
         {
@@ -66,7 +62,6 @@ namespace Ejercicio1.Controllers
             return NoContent();
         }
 
-        // Eliminar un asociado
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsociado(int id)
         {
